@@ -37,12 +37,11 @@ class Block {
      */
     validate() {
         return new Promise((resolve, reject) => {
-            // we don't need an auxiliary value `let self = this` because we are inside an arrow function
-
+            const currentHash = this.hash
             // Recalculate the hash of the Block
             const blockHash = SHA256(this);
             // Comparing if the hashes changed
-            const isSameHash = blockHash === this.hash
+            const isSameHash = blockHash === currentHash
             // Returning the Block is not valid
             // Returning the Block is valid
             resolve(isSameHash);

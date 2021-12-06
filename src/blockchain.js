@@ -75,9 +75,16 @@ class Blockchain {
         this.chain.push(block)
         this.height++
 
+        // execute the validateChain() function every time a block is added
+        this.validateChain().then(errorLog => {
+          if(errorLog && errorLog.length > 0) {
+            reject("Invalid chain")
+          }
+        });
+
         resolve(block)
       } catch (err) {
-        reject(err)
+        reject("An error has occurred")
       }
     });
   }

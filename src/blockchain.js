@@ -77,7 +77,7 @@ class Blockchain {
 
         // execute the validateChain() function every time a block is added
         this.validateChain().then(errorLog => {
-          if(errorLog && errorLog.length > 0) {
+          if (errorLog && errorLog.length > 0) {
             reject("Invalid chain")
           }
         });
@@ -210,7 +210,7 @@ class Blockchain {
             if (!isValid) {
               errorLog.push({ error: 'Block validation failed' })
             }
-            if (block.previousBlockHash !== this.chain[i - 1].hash) {
+            if (block.height !== 0 && block.previousBlockHash !== this.chain[i - 1].hash) {
               errorLog.push({ error: 'Hash of previous block do not match' });
             }
           })
